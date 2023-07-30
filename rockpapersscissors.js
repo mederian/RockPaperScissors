@@ -1,4 +1,18 @@
 let input = ""
+let computerWin = 0;
+let playerWin = 0;
+let rounds = 0;
+
+
+const rockButton = document.querySelector('#rock');
+const papersButton = document.querySelector('#papers');
+const scissorsButton = document.querySelector('#scissors');
+
+rockButton.addEventListener('click', playerChoice);
+papersButton.addEventListener('click', playerChoice);
+scissorsButton.addEventListener('click', playerChoice);
+
+const resultsPanel = document.querySelector('#results');
 
 function getComputerChoice(){
     let randomValue = Math.floor(Math.random() * 3);
@@ -65,6 +79,29 @@ function papers(hand){
 
 }
 
+function endGame(){
+    let finalResult = "It was a tie";
+    
+    if(playerWin > computerWin) finalResult = "You win!";
+    else if(playerWin < computerWin) finalResult = "You lose! Computer won";
+    resultsPanel.innerText += `\nThe game is over ${finalResult}`;
+}
+function displayCurrentScore(){
+    resultsPanel.innerText = `Round ${rounds}: You have won ${playerWin} times, and computer won ${computerWin} times`;
+}
+
+function playRound(playerChoice){
+    let result = playSingleRound(playerChoice, getComputerChoice());
+    if(result.numeric === 1) playerWin++;
+    else if(result.numeric === 0) computerWin++;
+    rounds++;
+    displayCurrentScore();
+    if(playerWin >= 5 || computerWin >= 5) endGame();
+}
+
+//Change this one
+
+/*
 function game(rounds){
     let computerWin = 0;
     let playerWin = 0;
@@ -88,6 +125,11 @@ function game(rounds){
     else if(computerWin === playerWin) console.log("It is a tie!!")
 
 }
+*/
 
-game(5);
+
+function playerChoice(){
+
+    playRound(this.id)
+}
 
