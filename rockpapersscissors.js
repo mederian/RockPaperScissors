@@ -99,35 +99,6 @@ function playRound(playerChoice){
     if(playerWin >= 5 || computerWin >= 5) endGame();
 }
 
-//Change this one
-
-/*
-function game(rounds){
-    let computerWin = 0;
-    let playerWin = 0;
-    let x = 0;
-    while(x < (rounds)){
-        input = prompt("write, rock, papers or scissors");
-        input = input.toLowerCase();
-        if(input === 'rock' || input === 'papers' || input === 'scissors'){
-             
-            let result = playSingleRound(input, getComputerChoice())
-            console.log(result.text)
-            if(result.numeric === 1) playerWin++;
-            else if(result.numeric === 0) computerWin++;
-            x++;
-        }
-        else console.log("Not a valid input, try again");
-    }
-
-    if(playerWin > computerWin) console.log("You win!");
-    else if( computerWin > playerWin) console.log("You lose!!");
-    else if(computerWin === playerWin) console.log("It is a tie!!")
-
-}
-*/
-
-
 function playerChoice(){
 
     playRound(this.id)
